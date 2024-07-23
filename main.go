@@ -14,8 +14,6 @@ const (
 
 	MovePrefix = "\x1B\x5B"
 	MoveSuffix = "H"
-
-	SetCountryCodePrefix = "\x1B\x52"
 )
 
 type Connection struct {
@@ -23,13 +21,11 @@ type Connection struct {
 }
 
 func (c *Connection) WriteData(data []byte) {
-	n, err := c.Write(data)
+	_, err := c.Write(data)
 
 	if err != nil {
 		log.Panicln(err)
 	}
-
-	log.Println("Data written: ", n)
 }
 
 func (c *Connection) ClearScreen() {
